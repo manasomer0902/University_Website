@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="D:/University_Website/css/style.css">
+    <style>
+        label, input, textarea, button {
+            display: block;
+            margin: 10px 0;
+        }
+        input, textarea, button {
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="D:/University_Website/images/logo.png" alt="University Logo" class="logo">
+    <h1>Feedback Form</h1>
+</header>
+
+<nav>
+    <a href="home.html">Home</a>
+    <a href="programwise_student_list.html">Program List</a>
+    <a href="student_registration.html">Registeration</a>
+    <a href="feedback.html">Feedback</a>
+</nav>
+
+<main>
+    <h2>Feedback Form</h2>
+    <form id="feedbackForm" onsubmit="return validateFeedback()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+        
+        <label for="feedback">Feedback:</label>
+        <textarea id="feedback" name="feedback" rows="4" placeholder="Enter your feedback"></textarea>
+        
+        <button type="submit">Submit</button>
+    </form>
+    <div id="message" class="success-message" style="display:none;">Feedback submitted successfully!</div>
+</main>
+
+<script>
+function validateFeedback() {
+    const name = document.getElementById('name').value.trim();
+    const feedback = document.getElementById('feedback').value.trim();
+
+    if (!name || !feedback) {
+        alert("All fields must be filled out.");
+        return false;
+    }
+    
+    document.getElementById('message').style.display = 'block';
+    return false;  // Prevent form submission for demo purposes
+}
+</script>
+
+<footer>
+    <p>&copy; 2025 IGNOU University. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
