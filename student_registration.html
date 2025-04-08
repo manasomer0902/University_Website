@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        main h2 {
+            margin-bottom: 25px;  
+        }
+        label, input, button {
+            display: block;
+            margin: 10px 0;
+        }
+        input, button {
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="images/logo.png" alt="University Logo" class="logo">
+    <h1>Student Registration</h1>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="programwise_student_list.html">Program List</a>
+    <a href="student_registration.html">Registration</a>
+    <a href="feedback.html">Feedback</a>
+</nav>
+
+<main>
+    <h2>Registration for a Programme</h2>
+    <form id="regForm" onsubmit="return validateForm()">
+        <label for="name">Student Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+        
+        <label for="programme">Programme:</label>
+        <input type="text" id="programme" name="programme" placeholder="Enter your programme">
+        
+        <label for="serial">Serial Number:</label>
+        <input type="text" id="serial" name="serial" placeholder="Enter your serial number">
+        
+        <button type="submit">Submit</button>
+    </form>
+</main>
+
+<script>
+function validateForm() {
+    const name = document.getElementById('name').value.trim();
+    const programme = document.getElementById('programme').value.trim();
+    const serial = document.getElementById('serial').value.trim();
+
+    if (!name || !programme || !serial) {
+        alert("All fields must be filled out.");
+        return false;
+    }
+    
+    alert("Form submitted successfully!");
+    return true;
+}
+</script>
+
+<footer>
+    <p>&copy; 2025 IGNOU University. All rights reserved.</p>
+</footer>
+
+<script src="js/regestrationform.js"></script>
+</body>
+</html>

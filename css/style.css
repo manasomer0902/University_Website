@@ -1,0 +1,178 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Header Styling */
+header {
+    background: #4c98af;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.logo {
+    max-width: 100px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+/* Navigation Menu */
+nav {
+    background: #333;
+    overflow: hidden;
+}
+nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+nav a:hover {
+    background: #4c98af;
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+#searchBar {
+    width: 70%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 12px 20px;
+    margin-left: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Highlight matching text */
+.highlight {
+    background: yellow;
+    font-weight: bold;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    background: #f4f4f4;
+    min-height: 70vh;
+}
+main h2 {
+    color: #333;
+}
+main p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Program Section */
+.program-section {
+    margin-bottom: 30px;
+}
+.program-section h2 {
+    background: #4c98af;
+    color: white;
+    padding: 15px;
+    font-size: 24px;
+}
+
+.course-wrapper {
+    margin: 15px;
+}
+
+.course {
+    margin: 10px 0;
+    cursor: pointer;
+    color: #007BFF;
+    font-weight: bold;
+}
+.students {
+    display: none;
+    margin-left: 20px;
+}
+
+.students.show {
+    display: block;
+}
+.students ul {
+    list-style-type: none;
+    padding: 0;
+}
+.students li {
+    font-style: italic;
+    color: #4c4c4c;
+}
+
+/* Feedback Form Styles */
+form label,
+form input,
+form textarea,
+form button {
+    display: block;
+    margin: 10px 0;
+}
+
+form input,
+form textarea,
+form button {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Button-like Links */
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 10px 0 0;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
