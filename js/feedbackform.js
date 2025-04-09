@@ -1,3 +1,4 @@
+// Feedback Form Validation and Submission
 function validateFeedback() {
     const name = document.getElementById('name').value.trim();
     const feedback = document.getElementById('feedback').value.trim();
@@ -9,5 +10,23 @@ function validateFeedback() {
         return false;
     }
 
-    return true; // Allow form to submit
+    // ✅ Send POST request to backend
+    fetch("https://unifeedback.glitch.me/submit", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, feedback })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        window.location.href = "thankyou.html";
+    })
+    .catch(error => {
+        console.error("Error submitting feedback:", error);
+        alert("Something went wrong. Please try again later.");
+    });
+
+    return false; // Stop default form submit
 }
