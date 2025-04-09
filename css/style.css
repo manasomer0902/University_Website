@@ -164,7 +164,50 @@ form button {
     background-color: #0056b3;
 }
 
+/* Admin Dropdown Menu */
+.menu {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    z-index: 10;
+}
+.menu-links {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: transparent;
+    padding: 6px;
+    border-radius: 4px;
+    box-shadow: none;
+}
+.menu:hover .menu-links {
+    display: block;
+}
+.menu-links a {
+    color: black;
+    display: block;
+    text-decoration: none;
+    padding: 4px 8px;
+    font-size: 14px;
+}
+.menu-links a:hover {
+    background-color: #e0e0e0;
+}
 
+/* Admin Feedback Styles */
+.feedback-list {
+    margin-top: 20px;
+}
+.feedback-item {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 4px solid #007BFF;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
 /* Footer */
 footer {

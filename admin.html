@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - IGNOU</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <img src="images/logo.png" alt="IGNOU Logo" class="logo" />
+  <h1>Admin Panel</h1>
+  <div class="menu">&#8942;
+    <div class="menu-links">
+      <a href="index.html">Home</a><br>
+      <a href="admin.html">Admin</a>
+    </div>
+  </div>
+</header>
+
+<main class="admin-panel">
+  <h2>Submitted Feedbacks</h2>
+  <div id="feedbackContainer" class="feedback-list"></div>
+</main>
+
+<footer>
+  <p>&copy; 2025 IGNOU University. All rights reserved.</p>
+</footer>
+
+<script>
+  // Fetch feedback from backend
+  fetch('https://unifeedback.glitch.me/feedbacks')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('feedbackContainer');
+      if (data.length === 0) {
+        container.innerHTML = "<p>No feedback yet.</p>";
+      } else {
+        data.forEach(item => {
+          const div = document.createElement('div');
+          div.className = "feedback-item";
+          div.innerHTML = `<strong>${item.name}</strong><br>${item.feedback}`;
+          container.appendChild(div);
+        });
+      }
+    })
+    .catch(err => {
+      document.getElementById('feedbackContainer').innerHTML = "<p>Error loading feedbacks.</p>";
+      console.error(err);
+    });
+</script>
+
+</body>
+</html>
