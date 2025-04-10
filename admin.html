@@ -21,6 +21,8 @@
 
 <main class="admin-panel">
   <h2>Submitted Feedbacks</h2>
+  <button id="logoutBtn" class="button-link">Logout</button>
+
   <div id="feedbackContainer" class="feedback-list"></div>
 </main>
 
@@ -28,28 +30,7 @@
   <p>&copy; 2025 IGNOU University. All rights reserved.</p>
 </footer>
 
-<script>
-  // Fetch feedback from backend
-  fetch('https://unifeedback.glitch.me/feedbacks')
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById('feedbackContainer');
-      if (data.length === 0) {
-        container.innerHTML = "<p>No feedback yet.</p>";
-      } else {
-        data.forEach(item => {
-          const div = document.createElement('div');
-          div.className = "feedback-item";
-          div.innerHTML = `<strong>${item.name}</strong><br>${item.feedback}`;
-          container.appendChild(div);
-        });
-      }
-    })
-    .catch(err => {
-      document.getElementById('feedbackContainer').innerHTML = "<p>Error loading feedbacks.</p>";
-      console.error(err);
-    });
-</script>
-
+<script src="js/admin.js"></script>
+<script src = "js/threedotmenu.js"></script>
 </body>
 </html>

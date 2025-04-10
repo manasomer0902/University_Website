@@ -168,33 +168,40 @@ form button {
 .menu {
     position: absolute;
     top: 20px;
-    right: 15px;
-    font-size: 18px;
+    right: 20px;
+    font-size: 24px;
     cursor: pointer;
-    color: rgb(0, 0, 0);
-    z-index: 10;
+    z-index: 1000;
+    color: black;
 }
+
 .menu-links {
     display: none;
     position: absolute;
-    right: 0;
-    background: transparent;
-    padding: 6px;
-    border-radius: 4px;
-    box-shadow: none;
+    background-color: transaprent;
+    padding: 5px 0;
+    right: 10px;
+    top: 25px;   
+    z-index: 1000;
+    box-shadow:none; 
 }
-.menu:hover .menu-links {
-    display: block;
+
+
+.menu-links.show {
+  display: block;
 }
+
 .menu-links a {
-    color: black;
     display: block;
+    padding: 4px 10px;
+    margin-top: 0;
     text-decoration: none;
-    padding: 4px 8px;
-    font-size: 14px;
+    color: black;
+    font-size: 16px;
+    line-height: 0.1;
 }
 .menu-links a:hover {
-    background-color: #e0e0e0;
+    background-color: transparent;
 }
 
 /* Admin Feedback Styles */
@@ -208,6 +215,18 @@ form button {
     border-left: 4px solid #007BFF;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+/* Logout Button */
+#logoutBtn {
+    float: right;
+    margin-top: -30px;
+    background-color: #dc3545;
+  }
+  
+  #logoutBtn:hover {
+    background-color: #c82333;
+  }
+  
 
 /* Footer */
 footer {
