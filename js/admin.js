@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check login status
     if (localStorage.getItem("isLoggedIn") !== "true") {
       window.location.href = "login.html";
-    }
+    } 
   
     // Logout functionality
     logoutBtn.addEventListener("click", () => {
