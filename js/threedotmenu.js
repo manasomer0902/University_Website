@@ -15,6 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
       menuLinks.addEventListener('click', (e) => {
         e.stopPropagation(); // prevent menu from closing when clicking links
       });
+
+      menuLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = link.getAttribute('href');
+          menuLinks.classList.remove('show'); // close menu
+          window.location.href = href; // navigate smoothly
+        });
+      });
     }
   });
-  
