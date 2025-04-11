@@ -40,10 +40,9 @@ document.getElementById("resetForm").addEventListener("submit", async function (
 
     const data = await res.json();
     message.innerText = data.message || "Something went wrong.";
-    message.style.color = data.success ? "green" : "red";
+    message.style.color = data.message === "Password updated successfully." ? "green" : "red";
 
     if (data.message === "Password updated successfully.") {
-      message.style.color = "green";
       setTimeout(() => {
         window.location.href = "login.html";
       }, 2000);
