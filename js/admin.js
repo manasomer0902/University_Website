@@ -5,13 +5,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     // Logout functionality
-    const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       localStorage.removeItem("isLoggedIn");
-      window.location.href = "login.html";
-    });
+
+      const menuLinks = document.querySelector(".menu-links");
+      if (menuLinks) {
+        menuLinks.classList.remove("show");
   }
+      
+      // Add a slight delay to allow UI updates to complete
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 100); // 100ms delay is enough to avoid the glitch
+    });
+  
   
     // Fetch feedback from backend
     fetch('https://unifeedback.glitch.me/feedbacks')

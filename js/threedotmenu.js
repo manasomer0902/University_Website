@@ -16,12 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
         e.stopPropagation(); // prevent menu from closing when clicking links
       });
 
-      menuLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const href = link.getAttribute('href');
-          menuLinks.classList.remove('show'); // close menu
-          window.location.href = href; // navigate smoothly
+      const links = menuLinks.querySelectorAll('a');
+      links.forEach(link => {
+       link.addEventListener('click', () => {
+        menuLinks.classList.remove('show');
         });
       });
     }
