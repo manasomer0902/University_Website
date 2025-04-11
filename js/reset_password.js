@@ -14,13 +14,7 @@ document.getElementById("resetForm").addEventListener("submit", async function (
   
   const newPassword = document.getElementById("newPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
-  
   const message = document.getElementById("message");
-  if (!email) {
-    message.innerText = "Invalid or expired reset link.";
-    message.style.color = "red";
-    return;
-  }
 
   const email = new URLSearchParams(window.location.search).get("email");
   if (newPassword !== confirmPassword) {
@@ -28,6 +22,14 @@ document.getElementById("resetForm").addEventListener("submit", async function (
     message.style.color = "red";
     return;
   }
+
+  if (!email) {
+    message.innerText = "Invalid or expired reset link.";
+    message.style.color = "red";
+    return;
+  }
+
+  
 
   try {
     const res = await fetch("https://unifeedback.glitch.me/reset-password", {
