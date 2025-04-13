@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🔐 Fetch feedback with token and username
   fetch("https://unifeedback.glitch.me/feedbacks", {
     headers: {
-      "username": localStorage.getItem("username"),
-      "token": localStorage.getItem("authToken")
+      Authorization: localStorage.getItem("authToken")
+
     }
   })
     .then(res => {
