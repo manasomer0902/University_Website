@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
         .then(() => {
           // Clear all login info
-          localStorage.removeItem("authToken");
+          localStorage.removeItem("token");
           localStorage.removeItem("username");
           localStorage.removeItem("isLoggedIn");
 
@@ -29,16 +29,22 @@ document.addEventListener("DOMContentLoaded", () => {
           if (menuLinks) menuLinks.classList.remove("show");
 
           setTimeout(() => {
-            window.location.href = "login.html";
           }, 100);
         });
     });
   }
 
   // 🔐 Fetch feedback with token and username
+
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
+
   fetch("https://unifeedback.glitch.me/feedbacks", {
     headers: {
-      Authorization: localStorage.getItem("token")
+      Authorization: token
 
     }
   })
