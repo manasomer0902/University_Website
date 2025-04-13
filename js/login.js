@@ -27,7 +27,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          localStorage.setItem("authToken", data.token);
+          localStorage.setItem('token', response.token);
           localStorage.setItem("username", username);
           localStorage.setItem("isLoggedIn", "true");
 

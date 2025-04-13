@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🔐 Fetch feedback with token and username
   fetch("https://unifeedback.glitch.me/feedbacks", {
     headers: {
-      Authorization: localStorage.getItem("authToken")
+      Authorization: localStorage.getItem("token")
 
     }
   })
