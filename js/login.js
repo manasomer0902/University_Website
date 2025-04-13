@@ -27,7 +27,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('token', data.token);
           localStorage.setItem("username", username);
           localStorage.setItem("isLoggedIn", "true");
 
@@ -37,8 +37,10 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         }
       })
       .catch(err => {
-        document.getElementById("feedbackContainer").innerHTML =
-          `<p>Error loading feedbacks: ${err.message}</p>`;
+        const feedbackContainer = document.getElementById("feedbackContainer");
+        if (feedbackContainer) {
+          feedbackContainer.innerHTML = `<p>Error loading feedbacks: ${err.message}</p>`;
+        }
         console.error(err);
       });
   });
