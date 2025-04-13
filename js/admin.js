@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🔐 Fetch feedback with token and username
 
   const token = localStorage.getItem("token");
+  console.log("Token being sent:", token); // 🪵 check if it's valid
+
   if (!token) {
     window.location.href = "login.html";
     return;
