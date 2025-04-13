@@ -37,7 +37,8 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         }
       })
       .catch(err => {
-        document.getElementById("error").textContent = "Login error. Please try again.";
+        document.getElementById("feedbackContainer").innerHTML =
+          `<p>Error loading feedbacks: ${err.message}</p>`;
         console.error(err);
       });
   });
