@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (menuLinks) menuLinks.classList.remove("show");
 
           setTimeout(() => {
+            window.location.href = "login.html";
           }, 100);
         });
     });
