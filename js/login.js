@@ -1,3 +1,15 @@
+function toggleVisibility(id, icon) {
+  const input = document.getElementById(id);
+  if (input.type === "password") {
+    input.type = "text";
+    icon.textContent = "🙈";
+  } else {
+    input.type = "password";
+    icon.textContent = "👁️";
+  }
+}
+
+
 // login
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -15,7 +27,10 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
+          localStorage.setItem("authToken", data.token);
+          localStorage.setItem("username", username);
           localStorage.setItem("isLoggedIn", "true");
+
           window.location.href = "admin.html";
         } else {
           document.getElementById("error").textContent = "Invalid username or password";
@@ -26,4 +41,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         console.error(err);
       });
   });
+
   
+ 
