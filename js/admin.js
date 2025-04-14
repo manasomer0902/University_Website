@@ -60,8 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const response = await fetch("https://unifeedback.glitch.me/feedbacks", {
         headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
+          "Authorization": token // Changed: Remove 'Bearer' as server expects raw token
         }
       });
 
@@ -99,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       container.innerHTML = `<p>Error loading feedbacks: ${err.message}</p>`;
       
       // If it's an auth error, redirect to login after a brief delay
-      if (err.message.includes("auth")) {
+      if (err.message.includes("auth") || err.message.includes("401")) {
         setTimeout(() => {
           localStorage.clear();
           window.location.href = "login.html";
