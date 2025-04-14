@@ -1,38 +1,52 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Redirect to login if not logged in
-  if (localStorage.getItem("isLoggedIn") !== "true") {
+// Check login status function
+function checkLoginStatus() {
+  const token = localStorage.getItem("token");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  
+  if (!token || !isLoggedIn || isLoggedIn !== "true") {
     window.location.href = "login.html";
-    return;
+    return false;
   }
+  return true;
+}
 
+// Handle logout function
+function handleLogout() {
+  const username = localStorage.getItem("username");
+  
+  fetch("https://unifeedback.glitch.me/logout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username })
+  })
+  .then(() => {
+    // Clear all login info
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("isLoggedIn");
+
+    const menuLinks = document.querySelector(".menu-links");
+    if (menuLinks) menuLinks.classList.remove("show");
+
+    window.location.href = "login.html";
+  })
+  .catch(err => {
+    console.error("Logout error:", err);
+    // Force logout even if server request fails
+    localStorage.clear();
+    window.location.href = "login.html";
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (!checkLoginStatus()) return;
+
+  // Setup logout button
   const logoutBtn = document.getElementById("logoutBtn");
-
   if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      const username = localStorage.getItem("username");
-
-      // 🔐 Call logout endpoint
-      fetch("https://unifeedback.glitch.me/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ username })
-      })
-        .then(() => {
-          // Clear all login info
-          localStorage.removeItem("token");
-          localStorage.removeItem("username");
-          localStorage.removeItem("isLoggedIn");
-
-          const menuLinks = document.querySelector(".menu-links");
-          if (menuLinks) menuLinks.classList.remove("show");
-
-          setTimeout(() => {
-            window.location.href = "login.html";
-          }, 100);
-        });
-    });
+    logoutBtn.addEventListener("click", handleLogout);
   }
 
   // 🔐 Fetch feedback with token and username
