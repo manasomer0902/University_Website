@@ -49,41 +49,65 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.addEventListener("click", handleLogout);
   }
 
-  // 🔐 Fetch feedback with token and username
+  // Load feedbacks function
+  async function loadFeedbacks() {
+    const container = document.getElementById("feedbackContainer");
+    container.innerHTML = "<p>Loading feedbacks...</p>";
 
-  const token = localStorage.getItem("token");
-  console.log("Token being sent:", token); // 🪵 check if it's valid
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("No auth token found");
 
-  if (!token) {
-    window.location.href = "login.html";
-    return;
-  }
+      const response = await fetch("https://unifeedback.glitch.me/feedbacks", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
 
-  fetch("https://unifeedback.glitch.me/feedbacks", {
-    headers: {
-      Authorization: token
+      if (!response.ok) {
+        if (response.status === 401) {
+          // Handle unauthorized - redirect to login
+          localStorage.clear();
+          window.location.href = "login.html";
+          return;
+        }
+        throw new Error(`Server error: ${response.status}`);
+      }
 
-    }
-  })
-    .then(res => {
-      if (res.status === 401) throw new Error("Unauthorized");
-      return res.json();
-    })
-    .then(data => {
-      const container = document.getElementById("feedbackContainer");
+      const data = await response.json();
+      
       if (!data || data.length === 0) {
         container.innerHTML = "<p>No feedback available.</p>";
-      } else {
-        data.forEach(item => {
-          const div = document.createElement("div");
-          div.className = "feedback-item";
-          div.innerHTML = `<strong>${item.name}</strong><br>${item.feedback}`;
-          container.appendChild(div);
-        });
+        return;
       }
-    })
-    .catch(err => {
-      document.getElementById("feedbackContainer").innerHTML = "<p>Error loading feedbacks.</p>";
-      console.error(err);
-    });
+
+      container.innerHTML = "";
+      data.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "feedback-item";
+        div.innerHTML = `
+          <strong>${item.name || 'Anonymous'}</strong>
+          <br>
+          ${item.feedback}
+        `;
+        container.appendChild(div);
+      });
+
+    } catch (err) {
+      console.error("Feedback loading error:", err);
+      container.innerHTML = `<p>Error loading feedbacks: ${err.message}</p>`;
+      
+      // If it's an auth error, redirect to login after a brief delay
+      if (err.message.includes("auth")) {
+        setTimeout(() => {
+          localStorage.clear();
+          window.location.href = "login.html";
+        }, 2000);
+      }
+    }
+  }
+
+  // Load feedbacks when page loads
+  loadFeedbacks();
 });
